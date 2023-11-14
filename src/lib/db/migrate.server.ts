@@ -11,7 +11,7 @@ if (!env.DATABASE_URL) {
 }
 
 const migrationClient = createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN });
-const migrationDB = drizzle(migrationClient, { logger: drizzleLogger });
+const migrationDB = drizzle(migrationClient, { logger: drizzleLogger("migration") });
 
 export const runMigrations = async () => {
 	logger.debug('Starting migrations');

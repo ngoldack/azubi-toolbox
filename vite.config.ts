@@ -3,6 +3,7 @@ import pino from 'pino';
 import { defineConfig } from 'vite';
 
 const logger = pino({
+	name: "vite",
 	level: process.env.NODE_ENV === 'production' ? 'info' : 'debug'
 });
 

@@ -9,4 +9,4 @@ if (!env.DATABASE_URL) {
 
 const queryClient = createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN });
 
-export const db = drizzle(queryClient, { logger: drizzleLogger });
+export const db = drizzle(queryClient, { logger: drizzleLogger() });
