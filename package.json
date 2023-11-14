@@ -47,6 +47,7 @@
 	"type": "module",
 	"dependencies": {
 		"@libsql/client": "^0.3.6",
+		"@paralleldrive/cuid2": "^2.2.2",
 		"bits-ui": "^0.9.4",
 		"clsx": "^2.0.0",
 		"cmdk-sv": "^0.0.6",
