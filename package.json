@@ -15,7 +15,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"update": "bunx npm-check-updates@latest --interactive --format group",
-		"migration:generate": "bunx drizzle-kit generate:sqlite"
+		"migration:generate": "drizzle-kit generate:sqlite",
+		"studio": "drizzle-kit studio"
 	},
 	"devDependencies": {
 		"@iconify/json": "^2.2.142",

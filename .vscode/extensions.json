@@ -1,5 +1,16 @@
 {
-    "recommendations": [
-        "ms-vscode-remote.remote-containers"
-    ]
+	"recommendations": [
+		"ms-vscode-remote.remote-containers",
+		"vivaxy.vscode-conventional-commits",
+		"dbaeumer.vscode-eslint",
+		"github.copilot",
+		"github.copilot-chat",
+		"fivethree.vscode-svelte-snippets",
+		"pivaszbs.svelte-autoimport",
+		"svelte.svelte-vscode",
+		"ardenivanov.svelte-intellisense",
+		"bradlc.vscode-tailwindcss",
+		"usernamehw.errorlens",
+		"esbenp.prettier-vscode"
+	]
 }
