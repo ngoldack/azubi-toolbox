@@ -9,26 +9,26 @@
 
 0. Install dependencies:
 
-    ```bash
-    bun install
-    ```
+   ```bash
+   bun install
+   ```
 
 1. Start the dev server:
 
-    ```bash
-    bun dev
-    ```
+   ```bash
+   bun dev
+   ```
 
 ## Testing
 
 0. Install playwright dependencies:
 
-    ```bash
-    bunx playwright install --with-deps
-    ```
+   ```bash
+   bunx playwright install --with-deps
+   ```
 
 1. Run tests:
 
-    ```bash
-    bun test
-    ```
+   ```bash
+   bun run test
+   ```
