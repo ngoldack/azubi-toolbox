@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import pino from 'pino';
 import { defineConfig } from 'vite';
+import Icons from 'unplugin-icons/vite';
 
 const logger = pino({
 	name: 'vite',
@@ -8,7 +9,12 @@ const logger = pino({
 });
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		sveltekit(),
+		Icons({
+			compiler: 'svelte'
+		})
+	],
 	customLogger: {
 		info: (info) => logger.info(info),
 		error: (error) => logger.error(error),

@@ -16,6 +16,7 @@
 		"migration:generate": "bunx drizzle-kit generate:sqlite"
 	},
 	"devDependencies": {
+		"@iconify/json": "^2.2.142",
 		"@playwright/test": "^1.39.0",
 		"@sveltejs/adapter-auto": "^2.1.1",
 		"@sveltejs/kit": "^1.27.5",
@@ -36,6 +37,7 @@
 		"tailwindcss": "^3.3.2",
 		"tslib": "^2.6.2",
 		"typescript": "^5.2.2",
+		"unplugin-icons": "^0.17.4",
 		"vite": "^4.5.0"
 	},
 	"type": "module",

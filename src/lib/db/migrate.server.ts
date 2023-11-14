@@ -6,6 +6,8 @@ import { drizzle } from 'drizzle-orm/libsql';
 import logger from '$lib/logger';
 import drizzleLogger from './logger';
 
+let alreadyRan = false;
+
 if (!env.DATABASE_URL) {
 	throw new Error('DATABASE_URL is not defined');
 }
@@ -14,6 +16,11 @@ const migrationClient = createClient({ url: env.DATABASE_URL, authToken: env.DAT
 const migrationDB = drizzle(migrationClient, { logger: drizzleLogger('migration') });
 
 export const runMigrations = async () => {
+	if (alreadyRan) {
+		logger.info('Migrations already ran');
+		return;
+	}
+	alreadyRan = true;
 	logger.debug('Starting migrations');
 	const start = Date.now();
 	await migrate(migrationDB, { migrationsFolder: './drizzle' });
