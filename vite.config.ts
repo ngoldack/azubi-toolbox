@@ -1,11 +1,10 @@
-
 import { sveltekit } from '@sveltejs/kit/vite';
 import pino from 'pino';
 import { defineConfig } from 'vite';
 
 const logger = pino({
-	level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-})
+	level: process.env.NODE_ENV === 'production' ? 'info' : 'debug'
+});
 
 export default defineConfig({
 	plugins: [sveltekit()],
@@ -16,6 +15,6 @@ export default defineConfig({
 		clearScreen: () => logger.info('clearScreen'),
 		hasErrorLogged: () => true,
 		hasWarned: true,
-		warnOnce: (warn) => logger.warn(warn),
+		warnOnce: (warn) => logger.warn(warn)
 	}
 });
