@@ -1,34 +1,43 @@
 {
-	"name": "azubi-toolbox",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"test": "playwright test",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
-		"update": "bunx npm-check-updates@latest --interactive --format group"
-	},
-	"devDependencies": {
-		"@playwright/test": "^1.39.0",
-		"@sveltejs/adapter-auto": "^2.1.1",
-		"@sveltejs/kit": "^1.27.5",
-		"@typescript-eslint/eslint-plugin": "^6.11.0",
-		"@typescript-eslint/parser": "^6.11.0",
-		"eslint": "^8.53.0",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte": "^2.35.0",
-		"prettier": "^3.1.0",
-		"prettier-plugin-svelte": "^3.1.0",
-		"svelte": "^4.2.3",
-		"svelte-check": "^3.6.0",
-		"tslib": "^2.6.2",
-		"typescript": "^5.2.2",
-		"vite": "^4.5.0"
-	},
-	"type": "module"
+  "name": "azubi-toolbox",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev | bunx pino-pretty",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "playwright test",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "format": "prettier --plugin-search-dir . --write .",
+    "update": "bunx npm-check-updates@latest --interactive --format group",
+    "migration:generate": "bunx drizzle-kit generate:sqlite"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@sveltejs/adapter-auto": "^2.1.1",
+    "@sveltejs/kit": "^1.27.5",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "drizzle-kit": "^0.20.2",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-svelte": "^2.35.0",
+    "prettier": "^3.1.0",
+    "prettier-plugin-svelte": "^3.1.0",
+    "svelte": "^4.2.3",
+    "svelte-check": "^3.6.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@libsql/client": "^0.3.6",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.0",
+    "pino": "^8.16.1",
+    "pino-http": "^8.5.1"
+  }
 }
