@@ -4,6 +4,15 @@ on:
   push:
 
 jobs:
+  outdated-tools:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - run: curl -fsSL https://moonrepo.dev/install/proto.sh | bash
+      - run: proto outdated
+
   build:
     runs-on: ubuntu-latest
     services:
