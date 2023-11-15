@@ -4,6 +4,7 @@
 
 - [NodeJS](https://nodejs.org/en/) >= 20.9.0
 - [Bun](https://bun.sh) >= 1.0.0
+- [Docker](https://www.docker.com/) >= 20.10.0
 
 ### Installation via proto
 

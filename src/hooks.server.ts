@@ -1,16 +1,27 @@
 import { env } from '$env/dynamic/private';
-import { runMigrations } from '$lib/db/migrate.server';
 import logger from '$lib/logger';
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
+import { dev } from '$app/environment';
+import { registerWorkers } from '$lib/scheduler/queue.server';
 
 // This will run the migrations when the server starts
 // unless the DISABLE_MIGRATIONS environment variable is set to "true"
 // When running the dev server, migrations are applied after the first request
 if (env.DISABLE_MIGRATIONS !== 'true') {
+	const { runMigrations } = await import('$lib/db/migrate.server');
 	await runMigrations();
 }
 
+if (dev && env.DISABLE_SEEDING !== 'true') {
+	const { seed } = await import('$lib/db/seed');
+	await seed();
+}
+
+// Startup background workers
+await registerWorkers();
+
+// Log all requests
 const log: Handle = async ({ event, resolve }) => {
 	const start = Date.now();
 	const resp = await resolve(event);
