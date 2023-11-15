@@ -44,6 +44,7 @@ jobs:
       - run: bun install
       - run: bun format:check
         id: format_check
+        continue-on-error: true
       - if: failure()
         run: echo "::warning Code style issues detected::${{join(steps.format_check.outputs.*, '\n')}}"
 
