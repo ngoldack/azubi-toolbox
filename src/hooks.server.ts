@@ -1,9 +1,9 @@
 import { env } from '$env/dynamic/private';
-import { startQueue } from '$lib/scheduler/queue.server';
 import logger from '$lib/logger';
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { dev } from '$app/environment';
+import { registerWorkers } from '$lib/scheduler/queue.server';
 
 // This will run the migrations when the server starts
 // unless the DISABLE_MIGRATIONS environment variable is set to "true"
@@ -18,8 +18,8 @@ if (dev && env.DISABLE_SEEDING !== 'true') {
 	await seed();
 }
 
-// Startup the queue
-await startQueue();
+// Startup background workers
+await registerWorkers();
 
 // Log all requests
 const log: Handle = async ({ event, resolve }) => {
