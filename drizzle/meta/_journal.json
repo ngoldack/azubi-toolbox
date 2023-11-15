@@ -1,13 +1,13 @@
 {
-  "version": "5",
-  "dialect": "sqlite",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "5",
-      "when": 1699976412073,
-      "tag": "0000_illegal_baron_strucker",
-      "breakpoints": true
-    }
-  ]
+	"version": "5",
+	"dialect": "sqlite",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "5",
+			"when": 1699976412073,
+			"tag": "0000_illegal_baron_strucker",
+			"breakpoints": true
+		}
+	]
 }
