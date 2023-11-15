@@ -6,6 +6,8 @@ on:
 jobs:
   outdated-tools:
     runs-on: ubuntu-latest
+    env:
+      PATH: /home/runner/.proto/bin/proto:$PATH
     steps:
       - uses: actions/checkout@v3
         with:
