@@ -6,13 +6,12 @@ on:
 jobs:
   outdated-tools:
     runs-on: ubuntu-latest
-    env:
-      PATH: /home/runner/.proto/bin/proto:$PATH
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - run: curl -fsSL https://moonrepo.dev/install/proto.sh | bash
+      - run: export PATH=/home/runner/.proto/bin/proto:$PATH
       - run: proto outdated
 
   build:
