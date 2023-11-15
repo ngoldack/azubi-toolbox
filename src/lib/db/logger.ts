@@ -6,5 +6,5 @@ export default (name?: string): Logger => {
 		logQuery(query, params) {
 			logger.child({ name: name ?? 'drizzle' }).debug(params, query);
 		}
-};
+	};
 };
