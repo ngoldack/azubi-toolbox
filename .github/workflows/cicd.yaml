@@ -26,6 +26,8 @@ jobs:
       - run: bun install
       - run: bun run sync
       - run: bun run build
+        env:
+          QUEUE_REDIS_HOST: redis
 
   lint:
     runs-on: ubuntu-latest
@@ -80,6 +82,8 @@ jobs:
       - run: bun install
       - run: bunx playwright install --with-deps
       - run: bun run test
+        env:
+          QUEUE_REDIS_HOST: redis
 
       - uses: actions/upload-artifact@v3
         if: always()
