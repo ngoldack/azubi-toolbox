@@ -14,7 +14,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "eslint .",
-    "check-format": "prettier --check .",
+		"format:check": "prettier . --check",
 		"format": "prettier --write .",
 		"update": "bunx npm-check-updates@latest --interactive --format group",
 		"migration:generate": "drizzle-kit generate:sqlite",

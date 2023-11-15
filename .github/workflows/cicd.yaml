@@ -31,6 +31,22 @@ jobs:
       - run: bun check
       - run: bun lint
 
+  style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+      - run: bun format:check
+        id: format_check
+      - if: failure()
+        run: echo "::warning Code style issues detected::${{join(steps.format_check.outputs.*, '\n')}}"
+
   test:
     runs-on: ubuntu-latest
     steps:
