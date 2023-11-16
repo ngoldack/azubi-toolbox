@@ -70,6 +70,8 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     services:
       # Label used to access the service container
       redis:
@@ -87,7 +89,6 @@ jobs:
         with:
           auto-install: true
       - run: bun install
-      - run: bunx playwright install --with-deps
       - run: bun run test
         env:
           QUEUE_REDIS_HOST: redis
