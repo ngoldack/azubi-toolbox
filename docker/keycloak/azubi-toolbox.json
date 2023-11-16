@@ -9,7 +9,7 @@
 	"enabled": true,
 	"alwaysDisplayInConsole": false,
 	"clientAuthenticatorType": "client-secret",
-	"secret": "ImQJmseoAkbJMKknnuNon2ZVcTYx8VYg",
+	"secret": "secret",
 	"redirectUris": [
 		"http://localhost:5173/auth/callback/keycloak",
 		"http://localhost:4173/auth/callback/keycloak"
