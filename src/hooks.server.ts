@@ -57,6 +57,7 @@ const authentication: Handle = async ({ event, ...args }) => {
 
 	const sveltekitAuth = SvelteKitAuth({
 		providers: providers.slice(0, 1),
+		trustHost: true,
 		debug: dev && logger.level === 'debug',
 		logger: authLogger,
 		callbacks: {
