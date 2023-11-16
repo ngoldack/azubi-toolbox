@@ -90,8 +90,9 @@ CREATE TABLE `user` (
 	`id` text PRIMARY KEY NOT NULL,
 	`updated_at` integer NOT NULL,
 	`created_at` integer NOT NULL,
+	`auth_id` text NOT NULL,
 	`type` text NOT NULL,
 	`role` text NOT NULL,
-	`vorname` text NOT NULL,
-	`nachname` text NOT NULL
+	`vorname` text,
+	`nachname` text
 );

@@ -5,6 +5,7 @@ import { createClient } from '@libsql/client';
 import { drizzle } from 'drizzle-orm/libsql';
 import logger from '$lib/logger';
 import drizzleLogger from './logger';
+import schema from './schema';
 
 let alreadyRan = false;
 
@@ -13,7 +14,7 @@ if (!env.DATABASE_URL) {
 }
 
 const migrationClient = createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN });
-const migrationDB = drizzle(migrationClient, { logger: drizzleLogger('migration') });
+const migrationDB = drizzle(migrationClient, { logger: drizzleLogger('migration'), schema });
 
 export const runMigrations = async () => {
 	if (alreadyRan) {
