@@ -86,7 +86,7 @@ jobs:
       keycloak:
         image: quay.io/keycloak/keycloak:22.0
         options: >-
-          --health-cmd "curl -f http://localhost:8080/auth/realms/master"
+          --health-cmd "curl -f http://localhost:8080/realms/master"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
