@@ -43,11 +43,12 @@
     "prettier-plugin-tailwindcss": "^0.5.7",
     "svelte": "^4.2.3",
     "svelte-check": "^3.6.0",
+    "svelte-headless-table": "^0.17.7",
     "tailwindcss": "^3.3.5",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "unplugin-icons": "^0.17.4",
-    "vite": "^4.5.0"
+    "vite": "^5.0.0"
   },
   "type": "module",
   "dependencies": {
@@ -70,8 +71,8 @@
     "nanoid": "^5.0.3",
     "pino": "^8.16.2",
     "radix-icons-svelte": "^1.2.1",
+    "sveltekit-flash-message": "^2.2.2",
     "sveltekit-superforms": "^1.10.2",
-    "svoast": "^2.3.0",
     "tailwind-merge": "^2.0.0",
     "tailwind-variants": "^0.1.18",
     "zod": "^3.22.4"

@@ -9,7 +9,14 @@ const logger = pino({
 });
 
 export default defineConfig({
+	server: {
+		warmup: {
+			// Pre-render all pages at build time. This is optional.
+			clientFiles: ['src/routes/**/*.svelte']
+		}
+	},
 	plugins: [
+		// @ts-expect-error - SvelteKit plugin not ready for Vite 5, but it works
 		sveltekit(),
 		Icons({
 			compiler: 'svelte'

@@ -5,9 +5,11 @@ node_modules
 /package
 .env
 .env.*
+!.env.test
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 *.db
-test-results
+test-resultstest/.auth
+tests/.auth

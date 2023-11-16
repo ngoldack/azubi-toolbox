@@ -1,8 +1,18 @@
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { idField, defaultFields } from '../default';
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
+import { z } from 'zod';
 
-export type userRole = 'user' | 'admin';
-export type userType = 'ausbilder' | 'ausbildungsbeauftragter' | 'azubi';
+export enum UserRole {
+	ADMIN = 'admin',
+	USER = 'user'
+}
+export enum UserType {
+	AZUBI = 'azubi',
+	AUSBILDER = 'ausbilder',
+	AUSBILDUNGSBEAUFTRAGTER = 'ausbildungsbeauftragter'
+}
+
 export const abteilung = sqliteTable('abteilung', {
 	id: idField(),
 	...defaultFields,
@@ -22,11 +32,8 @@ export const user = sqliteTable('user', {
 
 	authId: text('auth_id').notNull(),
 
-	type: text('type')
-		.$type<userRole>()
-		.$default(() => 'user')
-		.notNull(),
-	role: text('role').$type<userType>().notNull(),
+	type: text('type').$type<UserType>().notNull(),
+	role: text('role').$type<UserRole>().notNull(),
 
 	vorname: text('vorname'),
 	nachname: text('nachname')
@@ -119,3 +126,16 @@ export const bericht_genehmigung = sqliteTable('bericht_genehmingung', {
 	),
 	ausbilderId: text('ausbilder_id').references(() => ausbilder.id)
 });
+
+export const userSchema = createSelectSchema(user, {
+	role: z.nativeEnum(UserRole),
+	type: z.nativeEnum(UserType)
+});
+export type UserSchema = typeof userSchema;
+export type User = z.infer<typeof userSchema>;
+export const userInsertSchema = createInsertSchema(user, {
+	role: z.nativeEnum(UserRole),
+	type: z.nativeEnum(UserType)
+});
+export type UserInsertSchema = typeof userInsertSchema;
+export type UserInsert = z.infer<typeof userInsertSchema>;

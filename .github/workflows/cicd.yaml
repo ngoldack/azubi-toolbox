@@ -70,6 +70,8 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     services:
       # Label used to access the service container
       redis:
@@ -81,13 +83,21 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      keycloak:
+        image: quay.io/keycloak/keycloak:22.0
+        options: >-
+          --health-cmd "curl -f http://localhost:8080/realms/master"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
+      - name: Install xz-utils
+        run: apt-get update && apt-get install xz-utils
       - uses: moonrepo/setup-toolchain@v0
         with:
           auto-install: true
       - run: bun install
-      - run: bunx playwright install --with-deps
       - run: bun run test
         env:
           QUEUE_REDIS_HOST: redis

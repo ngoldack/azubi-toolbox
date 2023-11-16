@@ -1,107 +1,95 @@
 {
-  "clientId": "azubi-toolbox",
-  "name": "azubi-toolbox",
-  "description": "",
-  "rootUrl": "http://localhost:5173",
-  "adminUrl": "http://localhost:5173",
-  "baseUrl": "",
-  "surrogateAuthRequired": false,
-  "enabled": true,
-  "alwaysDisplayInConsole": false,
-  "clientAuthenticatorType": "client-secret",
-  "secret": "ImQJmseoAkbJMKknnuNon2ZVcTYx8VYg",
-  "redirectUris": [
-    "http://localhost:5173/auth/callback/keycloak"
-  ],
-  "webOrigins": [
-    "http://localhost:5173"
-  ],
-  "notBefore": 0,
-  "bearerOnly": false,
-  "consentRequired": false,
-  "standardFlowEnabled": true,
-  "implicitFlowEnabled": false,
-  "directAccessGrantsEnabled": true,
-  "serviceAccountsEnabled": true,
-  "authorizationServicesEnabled": true,
-  "publicClient": false,
-  "frontchannelLogout": true,
-  "protocol": "openid-connect",
-  "attributes": {
-    "client.secret.creation.time": "1700128530",
-    "oauth2.device.authorization.grant.enabled": "false",
-    "use.jwks.url": "false",
-    "backchannel.logout.revoke.offline.tokens": "false",
-    "use.refresh.tokens": "true",
-    "oidc.ciba.grant.enabled": "false",
-    "backchannel.logout.session.required": "true",
-    "client_credentials.use_refresh_token": "false",
-    "tls.client.certificate.bound.access.tokens": "false",
-    "require.pushed.authorization.requests": "false",
-    "acr.loa.map": "{}",
-    "display.on.consent.screen": "false",
-    "token.response.type.bearer.lower-case": "false"
-  },
-  "authenticationFlowBindingOverrides": {},
-  "fullScopeAllowed": true,
-  "nodeReRegistrationTimeout": -1,
-  "protocolMappers": [
-    {
-      "name": "Client Host",
-      "protocol": "openid-connect",
-      "protocolMapper": "oidc-usersessionmodel-note-mapper",
-      "consentRequired": false,
-      "config": {
-        "user.session.note": "clientHost",
-        "id.token.claim": "true",
-        "access.token.claim": "true",
-        "claim.name": "clientHost",
-        "jsonType.label": "String"
-      }
-    },
-    {
-      "name": "Client ID",
-      "protocol": "openid-connect",
-      "protocolMapper": "oidc-usersessionmodel-note-mapper",
-      "consentRequired": false,
-      "config": {
-        "user.session.note": "client_id",
-        "id.token.claim": "true",
-        "access.token.claim": "true",
-        "claim.name": "client_id",
-        "jsonType.label": "String"
-      }
-    },
-    {
-      "name": "Client IP Address",
-      "protocol": "openid-connect",
-      "protocolMapper": "oidc-usersessionmodel-note-mapper",
-      "consentRequired": false,
-      "config": {
-        "user.session.note": "clientAddress",
-        "id.token.claim": "true",
-        "access.token.claim": "true",
-        "claim.name": "clientAddress",
-        "jsonType.label": "String"
-      }
-    }
-  ],
-  "defaultClientScopes": [
-    "web-origins",
-    "acr",
-    "roles",
-    "profile",
-    "email"
-  ],
-  "optionalClientScopes": [
-    "address",
-    "phone",
-    "offline_access",
-    "microprofile-jwt"
-  ],
-  "access": {
-    "view": true,
-    "configure": true,
-    "manage": true
-  }
+	"clientId": "azubi-toolbox",
+	"name": "azubi-toolbox",
+	"description": "",
+	"rootUrl": "http://localhost:5173",
+	"adminUrl": "http://localhost:5173",
+	"baseUrl": "",
+	"surrogateAuthRequired": false,
+	"enabled": true,
+	"alwaysDisplayInConsole": false,
+	"clientAuthenticatorType": "client-secret",
+	"secret": "secret",
+	"redirectUris": [
+		"http://localhost:5173/auth/callback/keycloak",
+		"http://localhost:4173/auth/callback/keycloak"
+	],
+	"webOrigins": ["http://localhost:5173"],
+	"notBefore": 0,
+	"bearerOnly": false,
+	"consentRequired": false,
+	"standardFlowEnabled": true,
+	"implicitFlowEnabled": false,
+	"directAccessGrantsEnabled": true,
+	"serviceAccountsEnabled": true,
+	"authorizationServicesEnabled": true,
+	"publicClient": false,
+	"frontchannelLogout": true,
+	"protocol": "openid-connect",
+	"attributes": {
+		"client.secret.creation.time": "1700128530",
+		"oauth2.device.authorization.grant.enabled": "false",
+		"use.jwks.url": "false",
+		"backchannel.logout.revoke.offline.tokens": "false",
+		"use.refresh.tokens": "true",
+		"oidc.ciba.grant.enabled": "false",
+		"backchannel.logout.session.required": "true",
+		"client_credentials.use_refresh_token": "false",
+		"tls.client.certificate.bound.access.tokens": "false",
+		"require.pushed.authorization.requests": "false",
+		"acr.loa.map": "{}",
+		"display.on.consent.screen": "false",
+		"token.response.type.bearer.lower-case": "false"
+	},
+	"authenticationFlowBindingOverrides": {},
+	"fullScopeAllowed": true,
+	"nodeReRegistrationTimeout": -1,
+	"protocolMappers": [
+		{
+			"name": "Client Host",
+			"protocol": "openid-connect",
+			"protocolMapper": "oidc-usersessionmodel-note-mapper",
+			"consentRequired": false,
+			"config": {
+				"user.session.note": "clientHost",
+				"id.token.claim": "true",
+				"access.token.claim": "true",
+				"claim.name": "clientHost",
+				"jsonType.label": "String"
+			}
+		},
+		{
+			"name": "Client ID",
+			"protocol": "openid-connect",
+			"protocolMapper": "oidc-usersessionmodel-note-mapper",
+			"consentRequired": false,
+			"config": {
+				"user.session.note": "client_id",
+				"id.token.claim": "true",
+				"access.token.claim": "true",
+				"claim.name": "client_id",
+				"jsonType.label": "String"
+			}
+		},
+		{
+			"name": "Client IP Address",
+			"protocol": "openid-connect",
+			"protocolMapper": "oidc-usersessionmodel-note-mapper",
+			"consentRequired": false,
+			"config": {
+				"user.session.note": "clientAddress",
+				"id.token.claim": "true",
+				"access.token.claim": "true",
+				"claim.name": "clientAddress",
+				"jsonType.label": "String"
+			}
+		}
+	],
+	"defaultClientScopes": ["web-origins", "acr", "roles", "profile", "email"],
+	"optionalClientScopes": ["address", "phone", "offline_access", "microprofile-jwt"],
+	"access": {
+		"view": true,
+		"configure": true,
+		"manage": true
+	}
 }
