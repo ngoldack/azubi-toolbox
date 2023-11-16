@@ -1,6 +1,5 @@
 import { env } from '$env/dynamic/private';
-import logger from '$lib/logger';
-import { redirect, type Handle } from '@sveltejs/kit';
+import { redirect, type Handle, error } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { dev } from '$app/environment';
 import { registerWorkers } from '$lib/scheduler/queue.server';
@@ -8,9 +7,12 @@ import { SvelteKitAuth } from '@auth/sveltekit';
 import { getProviders } from '$lib/auth/provider.server';
 import { db } from '$lib/db/client.server';
 import { eq, sql } from 'drizzle-orm';
-import { user as userTable } from '$lib/db/schema/domain.schema';
+import { UserRole, UserType, user as userTable } from '$lib/db/schema/domain.schema';
 import { getAuthID } from '$lib/auth/id.server';
 import { authLogger } from '$lib/auth/logger';
+import defaultLogger from '$lib/logger';
+
+const logger = defaultLogger.child({ name: 'hooks' });
 
 // This will run the migrations when the server starts
 // unless the DISABLE_MIGRATIONS environment variable is set to "true"
@@ -19,10 +21,6 @@ if (env.DISABLE_MIGRATIONS !== 'true') {
 	const { runMigrations } = await import('$lib/db/migrate.server');
 	await runMigrations();
 }
-
-export const runner = async () => {
-	setTimeout(runner, 1000);
-};
 
 if (dev && env.DISABLE_SEEDING !== 'true') {
 	const { seed } = await import('$lib/db/seed');
@@ -62,20 +60,39 @@ const authentication: Handle = async ({ event, ...args }) => {
 		debug: dev && logger.level === 'debug',
 		logger: authLogger,
 		callbacks: {
+			jwt: async ({ token, profile, account, user, session, trigger }) => {
+				logger.trace({ token, profile, account, user, session, trigger }, 'JWT callback');
+				if (account && profile) {
+					return {
+						...token,
+						authId: getAuthID(account, profile)
+					};
+				}
+				return token;
+			},
+			session: async ({ session, token, user, newSession, trigger }) => {
+				logger.trace({ session, token, user, newSession, trigger }, 'Session callback');
+				return {
+					...session,
+					user: {
+						...session.user,
+						authId: token.authId
+					}
+				};
+			},
 			signIn: async ({ account, profile }) => {
 				const [{ count }] = await db.select({ count: sql<number>`COUNT(*)` }).from(userTable);
 				const authId = getAuthID(account!, profile!);
 				if (!count || count === 0) {
 					await db.insert(userTable).values({
 						authId: authId,
-						type: 'admin',
-						role: 'ausbilder'
+						type: UserType.AUSBILDER,
+						role: UserRole.ADMIN
 					});
 					return true;
 				}
 
 				const users = await db.select().from(userTable).where(eq(userTable.authId, authId));
-
 				return users.length !== 0;
 			}
 		}
@@ -94,4 +111,37 @@ const authorization: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
-export const handle = sequence(log, authentication, authorization);
+const userdata: Handle = async ({ event, resolve }) => {
+	const session = await event.locals.getSession();
+	if (!session?.user.authId) {
+		logger.error({ session, event }, 'No authId in session');
+		throw error(403, 'Forbidden');
+	}
+
+	const [user] = await db.select().from(userTable).where(eq(userTable.authId, session.user.authId));
+	if (!user) {
+		return resolve(event);
+	}
+
+	event.locals.user = user;
+	return resolve(event);
+};
+
+// This hook will check if the user is authenticated and has the correct role for the route
+export const guard: Handle = async ({ event, resolve }) => {
+	const user = event.locals.user;
+	if (!user) {
+		throw error(403, 'Forbidden');
+	}
+
+	if (!event.route.id?.startsWith('/admin')) {
+		if (user.role !== UserRole.ADMIN) {
+			logger.error({ user }, 'User is not an admin');
+			throw error(403, 'Forbidden');
+		}
+	}
+
+	return resolve(event);
+};
+
+export const handle = sequence(log, authentication, authorization, userdata, guard);
