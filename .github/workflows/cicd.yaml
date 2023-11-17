@@ -4,17 +4,6 @@ on:
   push:
 
 jobs:
-  outdated-tools:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-      - uses: moonrepo/setup-toolchain@v0
-        with:
-          auto-install: true
-      - run: proto outdated
-
   build:
     runs-on: ubuntu-latest
     services:

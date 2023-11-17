@@ -1,0 +1,17 @@
+version: v1
+plugins:
+  - plugin: buf.build/connectrpc/es:v1.1.3
+    out: ../packages/azubi-toolbox-js/src/gen
+  # dependencies
+  - plugin: buf.build/bufbuild/es
+    out: ../packages/azubi-toolbox-js/src/gen
+
+  - plugin: buf.build/connectrpc/go:v1.12.0
+    out: ../packages/azubi-toolbox-go/gen
+    opt:
+      - paths=source_relative
+  # dependencies
+  - plugin: buf.build/protocolbuffers/go
+    out: ../packages/azubi-toolbox-go/gen
+    opt:
+      - paths=source_relative

@@ -1,0 +1,11 @@
+type: library
+language: typescript
+
+dependsOn:
+  - proto
+
+tasks:
+  build:
+    deps:
+      - proto:generate
+    command: "bun run build"

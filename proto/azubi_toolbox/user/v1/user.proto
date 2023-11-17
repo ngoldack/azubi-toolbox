@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package azubi_toolbox.user.v1;
+option go_package = "azubi-toolbox/packages/azubi-toolbox-go/gen/azubi_toolbox/user/v1";
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+}
+
+message CreateUserRequest {
+  string auth_id = 1;
+}
+
+message CreateUserResponse {
+  string id = 1;
+}

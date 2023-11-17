@@ -1,0 +1,5 @@
+type: library
+language: go
+
+dependsOn: 
+  - proto

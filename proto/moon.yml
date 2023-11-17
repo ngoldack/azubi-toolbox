@@ -1,0 +1,8 @@
+type: library
+language: unknown
+
+tasks:
+  lint:
+    command: 'buf lint'
+  generate:
+    command: 'buf generate'

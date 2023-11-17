@@ -1,2 +1,9 @@
+buf = "1.28.1"
+moon = "1.16.4"
+go = "1.21.4"
 bun = "1.0.12"
 node = "20.9.0"
+
+[plugins]
+buf = "source:https://raw.githubusercontent.com/stk0vrfl0w/proto-toml-plugins/main/plugins/buf.toml"
+moon = "source:https://raw.githubusercontent.com/moonrepo/moon/master/proto-plugin.toml"

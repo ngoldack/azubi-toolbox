@@ -1,0 +1,16 @@
+{
+  "name": "azubi-toolbox-js",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest",
+    "tsup": "^7.3.0",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "tsup ./src"
+  }
+}

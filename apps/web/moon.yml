@@ -1,0 +1,9 @@
+type: application
+language: typescript
+
+dependsOn: 
+  - azubi-toolbox-js
+
+tasks:
+  dev:
+    command: 'bun dev'
