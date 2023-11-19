@@ -10,8 +10,8 @@ export const getAuthID = (account: Account, profile: Profile) => {
 	switch (account.provider) {
 		case 'keycloak':
 			return getAuthIDKeycloak(profile as KeycloakProfile);
-			case 'auth0':
-				return getAuthIDAUth0(profile as Auth0Profile);
+		case 'auth0':
+			return getAuthIDAUth0(profile as Auth0Profile);
 		default:
 			throw new Error(`Unknown provider: ${account.provider}`);
 	}
